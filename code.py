@@ -13,10 +13,12 @@ def ask():
         gather()
     else:
         makeInst(listed)
-
+i = 0
 def makeInst(listed):
-    return [Point(str(listed[0][0]), listed[0][1]) for listed[0][0], listed[0][1] in listed]
-    #return Point(str(name), val)
+    for i in len(listed):
+        Point(str(listed[i][0]), listed[i][1])
+        i = i + 1
+        print (Point)
     
     
 def makePlot(x, y, title, xtitle, ytitle):
