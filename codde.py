@@ -2,9 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 class Point:
+    _instances = []
     def __init__(self, name, points):
         self.name = name
         self.points = points
+        self._instances.append(self)
+        
 
 def ask():
     jal = input("add another player? (y/n): ")
@@ -15,11 +18,27 @@ def ask():
         makeInst(listed)
 i = 0
 def makeInst(listed):
-    for i in len(listed):
+    for i in range(len(listed)):
         Point(str(listed[i][0]), listed[i][1])
         i = i + 1
-        print (Point)
+    for obj in Point._instances:
+        print (obj.name)
+        print (obj.points)
+    makeData(Point._instances)
     
+def makeData(data):
+    keys = []
+    values = []
+    for obj in data:
+        keys.append(obj.name)
+        values.append(obj.points)
+    result = dict(zip(keys, values))
+    print(result)
+    frameData(result)
+
+def frameData(res):
+    dat = pd.DataFrame(res)
+    print(dat)
     
 def makePlot(x, y, title, xtitle, ytitle):
     plt.plot(x, y)
@@ -74,13 +93,6 @@ def gather():
                 gather()
 
 
-#def create_dogs(dog_data):
-#    """Function to create multiple instances from a list of variables."""
-#    # Using list comprehension for efficiency
-#    return [Dog(name, age) for name, age in dog_data]
-
-# Variables to be used for instances
-#data = [("Buddy", 3), ("Max", 5), ("Bella", 2)]
-
-
-gather()
+if __name__ == '__main__':
+    gather()
+    
