@@ -9,12 +9,17 @@ class Point:
         self._instances.append(self)
         
 
+def funcItUp(y, point):
+    y does stuff to point
+
+
 def ask():
     jal = input("add another player? (y/n): ")
     print(jal)
     if jal == "y":
         gather()
     else:
+        listed.append(['x', jay2])
         makeInst(listed)
 i = 0
 def makeInst(listed):
@@ -35,39 +40,56 @@ def makeData(data):
     result = dict(zip(keys, values))
     print(result)
     frameData(result)
-
+cool = []
 def frameData(res):
     dat = pd.DataFrame(res)
     print(dat)
-    
-def makePlot(x, y, title, xtitle, ytitle):
-    plt.plot(x, y)
-    plt.title(title)
-    plt.xlabel(xtitle)
-    plt.ylabel(ytitle)
-    plt.show()
+    global cool
+    for col in dat:
+        print(col)
+        if col != 'x':
+            cool.append(str(col))
+    makePlot(dat, 'x', cool)
 
+def makePlot(pllt, xl, yl):
+    pllt.plot(x = f'{xl}', y = yl)
+    plt.title('points per game')
+    plt.xlabel('game')
+    plt.ylabel('points')
+    plt.savefig('my_plot.png') 
+    plt.show()
+    fr = input("show calculations?(y/n): ")
+    if fr == 'y':
+        funcItUp(listed)
+    else:
+        print("See file for graph.")
 listed = []
+jay2 = []
 
 def gather():
     global listed
+    global jay2
     jay = []
+    jay2 = []
     i = 1
     section = "y"
     name = input("Your name?: ")
     print(name)
     point1 = int(input(f"points for game {i}?: "))
     jay.append(point1)
+    jay2.append(i)
     print(point1)
     i = 2
     point2 = int(input(f"points for game {i}?: "))
     jay.append(point2)
+    jay2.append(i)
     print(point2)
     section = input("add another game? (y/n): ")
     while section == "y":
         i = i + 1
         pointi = int(input(f"points for game {i}?: "))
         jay.append(pointi)
+        jay2.append(i)
         print(jay)
         section = input("add another game? (y/n): ")
     print(name)
